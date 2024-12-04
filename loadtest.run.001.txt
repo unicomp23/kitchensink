@@ -1,0 +1,103 @@
+Collecting consumer test results...
+[DEBUG 2024-12-04T04:33:32.595Z] Executing command on ip-10-0-3-164.ec2.internal via bastion ec2-3-80-89-42.compute-1.amazonaws.com
+[DEBUG 2024-12-04T04:33:32.595Z] Command to execute: grep "overall_summary" /tmp/consumer-*.log
+[DEBUG 2024-12-04T04:33:32.595Z] Attempt 1/3
+[DEBUG 2024-12-04T04:33:33.029Z] SSH connection established
+[DEBUG 2024-12-04T04:33:33.029Z] Executing proxy command: ssh -i /home/ec2-user/.ssh/kafka.load.test.keypair.pem -o StrictHostKeyChecking=no ec2-user@ip-10-0-3-164.ec2.internal 'bash -s' << 'ENDSSH'
+grep "overall_summary" /tmp/consumer-*.log
+ENDSSH
+[DEBUG 2024-12-04T04:33:34.638Z] STDOUT: /tmp/consumer-0-9a6b8774.log:{"event":"overall_summary","averageLatencyMs":2.68,"totalMessages":5791,"producerCount":18}
+/tmp/consumer-0-9a6b8774.log:{"event":"overall_summary","averageLatencyMs":2.68,"minLatencyMs":1,"maxLatencyMs":99,"medianLatencyMs":2,"p99LatencyMs":6,"p999LatencyMs":57,"p9999LatencyMs":99,"totalMessages":5791,"producerCount":18}
+/tmp/consumer-1-9e76fde6.log:{"event":"overall_summary","averageLatencyMs":16.97,"totalMessages":5731,"producerCount":38}
+/tmp/consumer-1-9e76fde6.log:{"event":"overall_summary","averageLatencyMs":16.97,"minLatencyMs":1,"maxLatencyMs":2947,"medianLatencyMs":2,"p99LatencyMs":28,"p999LatencyMs":2608,"p9999LatencyMs":2947,"totalMessages":5731,"producerCount":38}
+/tmp/consumer-10-a4d54854.log:{"event":"overall_summary","averageLatencyMs":2.62,"totalMessages":1545,"producerCount":143}
+/tmp/consumer-10-a4d54854.log:{"event":"overall_summary","averageLatencyMs":2.62,"minLatencyMs":1,"maxLatencyMs":29,"medianLatencyMs":2,"p99LatencyMs":7,"p999LatencyMs":20,"p9999LatencyMs":29,"totalMessages":1545,"producerCount":143}
+/tmp/consumer-11-b335d33f.log:{"event":"overall_summary","averageLatencyMs":22.15,"totalMessages":7711,"producerCount":141}
+/tmp/consumer-11-b335d33f.log:{"event":"overall_summary","averageLatencyMs":22.15,"minLatencyMs":1,"maxLatencyMs":2892,"medianLatencyMs":2,"p99LatencyMs":994,"p999LatencyMs":2402,"p9999LatencyMs":2892,"totalMessages":7711,"producerCount":141}
+/tmp/consumer-12-7cdff474.log:{"event":"overall_summary","averageLatencyMs":15.6,"totalMessages":5592,"producerCount":179}
+/tmp/consumer-12-7cdff474.log:{"event":"overall_summary","averageLatencyMs":15.6,"minLatencyMs":1,"maxLatencyMs":2901,"medianLatencyMs":2,"p99LatencyMs":40,"p999LatencyMs":2556,"p9999LatencyMs":2901,"totalMessages":5592,"producerCount":179}
+/tmp/consumer-13-aa4e13f4.log:{"event":"overall_summary","averageLatencyMs":10.82,"totalMessages":6411,"producerCount":166}
+/tmp/consumer-13-aa4e13f4.log:{"event":"overall_summary","averageLatencyMs":10.82,"minLatencyMs":1,"maxLatencyMs":2904,"medianLatencyMs":2,"p99LatencyMs":15,"p999LatencyMs":2252,"p9999LatencyMs":2904,"totalMessages":6411,"producerCount":166}
+/tmp/consumer-14-b7aa1d00.log:{"event":"overall_summary","averageLatencyMs":2.61,"totalMessages":5450,"producerCount":177}
+/tmp/consumer-14-b7aa1d00.log:{"event":"overall_summary","averageLatencyMs":2.61,"minLatencyMs":1,"maxLatencyMs":94,"medianLatencyMs":2,"p99LatencyMs":8,"p999LatencyMs":50,"p9999LatencyMs":94,"totalMessages":5450,"producerCount":177}
+/tmp/consumer-15-98b9579e.log:{"event":"overall_summary","averageLatencyMs":16.48,"totalMessages":6163,"producerCount":218}
+/tmp/consumer-15-98b9579e.log:{"event":"overall_summary","averageLatencyMs":16.48,"minLatencyMs":1,"maxLatencyMs":2745,"medianLatencyMs":3,"p99LatencyMs":350,"p999LatencyMs":1970,"p9999LatencyMs":2745,"totalMessages":6163,"producerCount":218}
+/tmp/consumer-16-48c066b2.log:{"event":"overall_summary","averageLatencyMs":13.08,"totalMessages":6036,"producerCount":245}
+/tmp/consumer-16-48c066b2.log:{"event":"overall_summary","averageLatencyMs":13.08,"minLatencyMs":1,"maxLatencyMs":2895,"medianLatencyMs":3,"p99LatencyMs":22,"p999LatencyMs":2372,"p9999LatencyMs":2895,"totalMessages":6036,"producerCount":245}
+/tmp/consumer-17-b0246fe2.log:{"event":"overall_summary","averageLatencyMs":8.77,"totalMessages":2989,"producerCount":265}
+/tmp/consumer-17-b0246fe2.log:{"event":"overall_summary","averageLatencyMs":8.77,"minLatencyMs":1,"maxLatencyMs":1374,"medianLatencyMs":2,"p99LatencyMs":26,"p999LatencyMs":1249,"p9999LatencyMs":1374,"totalMessages":2989,"producerCount":265}
+/tmp/consumer-18-2fd1515f.log:{"event":"overall_summary","averageLatencyMs":10.68,"totalMessages":9005,"producerCount":325}
+/tmp/consumer-18-2fd1515f.log:{"event":"overall_summary","averageLatencyMs":10.68,"minLatencyMs":1,"maxLatencyMs":2842,"medianLatencyMs":2,"p99LatencyMs":16,"p999LatencyMs":2413,"p9999LatencyMs":2842,"totalMessages":9005,"producerCount":325}
+/tmp/consumer-19-d20133a9.log:{"event":"overall_summary","averageLatencyMs":9.65,"totalMessages":9633,"prod
+[DEBUG 2024-12-04T04:33:34.642Z] STDOUT: ucerCount":317}
+/tmp/consumer-19-d20133a9.log:{"event":"overall_summary","averageLatencyMs":9.65,"minLatencyMs":1,"maxLatencyMs":2839,"medianLatencyMs":3,"p99LatencyMs":13,"p999LatencyMs":2351,"p9999LatencyMs":2839,"totalMessages":9633,"producerCount":317}
+/tmp/consumer-2-b40249b1.log:{"event":"overall_summary","averageLatencyMs":17.72,"totalMessages":4993,"producerCount":38}
+/tmp/consumer-2-b40249b1.log:{"event":"overall_summary","averageLatencyMs":17.72,"minLatencyMs":1,"maxLatencyMs":2941,"medianLatencyMs":2,"p99LatencyMs":128,"p999LatencyMs":2574,"p9999LatencyMs":2941,"totalMessages":4993,"producerCount":38}
+/tmp/consumer-3-818043cf.log:{"event":"overall_summary","averageLatencyMs":14.85,"totalMessages":4957,"producerCount":52}
+/tmp/consumer-3-818043cf.log:{"event":"overall_summary","averageLatencyMs":14.85,"minLatencyMs":1,"maxLatencyMs":2878,"medianLatencyMs":2,"p99LatencyMs":21,"p999LatencyMs":2648,"p9999LatencyMs":2878,"totalMessages":4957,"producerCount":52}
+/tmp/consumer-4-c38328f2.log:{"event":"overall_summary","averageLatencyMs":7.6,"totalMessages":4449,"producerCount":78}
+/tmp/consumer-4-c38328f2.log:{"event":"overall_summary","averageLatencyMs":7.6,"minLatencyMs":1,"maxLatencyMs":1547,"medianLatencyMs":2,"p99LatencyMs":15,"p999LatencyMs":1448,"p9999LatencyMs":1547,"totalMessages":4449,"producerCount":78}
+/tmp/consumer-5-4f913eab.log:{"event":"overall_summary","averageLatencyMs":3.19,"totalMessages":559,"producerCount":51}
+/tmp/consumer-5-4f913eab.log:{"event":"overall_summary","averageLatencyMs":3.19,"minLatencyMs":1,"maxLatencyMs":13,"medianLatencyMs":3,"p99LatencyMs":7,"p999LatencyMs":13,"p9999LatencyMs":13,"totalMessages":559,"producerCount":51}
+/tmp/consumer-6-9ffd98e7.log:{"event":"overall_summary","averageLatencyMs":19.16,"totalMessages":5784,"producerCount":23}
+/tmp/consumer-6-9ffd98e7.log:{"event":"overall_summary","averageLatencyMs":19.16,"minLatencyMs":2,"maxLatencyMs":2871,"medianLatencyMs":3,"p99LatencyMs":288,"p999LatencyMs":2814,"p9999LatencyMs":2871,"totalMessages":5784,"producerCount":23}
+/tmp/consumer-7-bdcd0c90.log:{"event":"overall_summary","averageLatencyMs":10.36,"totalMessages":6307,"producerCount":99}
+/tmp/consumer-7-bdcd0c90.log:{"event":"overall_summary","averageLatencyMs":10.36,"minLatencyMs":1,"maxLatencyMs":2795,"medianLatencyMs":2,"p99LatencyMs":16,"p999LatencyMs":1991,"p9999LatencyMs":2795,"totalMessages":6307,"producerCount":99}
+/tmp/consumer-8-b8ec7ee9.log:{"event":"overall_summary","averageLatencyMs":11.64,"totalMessages":5558,"producerCount":80}
+/tmp/consumer-8-b8ec7ee9.log:{"event":"overall_summary","averageLatencyMs":11.64,"minLatencyMs":1,"maxLatencyMs":2840,"medianLatencyMs":2,"p99LatencyMs":17,"p999LatencyMs":2463,"p9999LatencyMs":2840,"totalMessages":5558,"producerCount":80}
+/tmp/consumer-9-324b17c1.log:{"event":"overall_summary","averageLatencyMs":39.75,"totalMessages":5302,"producerCount":117}
+/tmp/consumer-9-324b17c1.log:{"event":"overall_summary","averageLatencyMs":39.75,"minLatencyMs":1,"maxLatencyMs":2933,"medianLatencyMs":3,"p99LatencyMs":1564,"p999LatencyMs":2879,"p9999LatencyMs":2933,"totalMessages":5302,"producerCount":117}
+[DEBUG 2024-12-04T04:33:34.643Z] Command completed with exit code: 0
+Collected consumer results from ip-10-0-3-164.ec2.internal
+[DEBUG 2024-12-04T04:33:34.946Z] Executing command on ip-10-0-3-163.ec2.internal via bastion ec2-3-80-89-42.compute-1.amazonaws.com
+[DEBUG 2024-12-04T04:33:34.946Z] Command to execute: grep "overall_summary" /tmp/consumer-*.log
+[DEBUG 2024-12-04T04:33:34.946Z] Attempt 1/3
+[DEBUG 2024-12-04T04:33:35.395Z] SSH connection established
+[DEBUG 2024-12-04T04:33:35.395Z] Executing proxy command: ssh -i /home/ec2-user/.ssh/kafka.load.test.keypair.pem -o StrictHostKeyChecking=no ec2-user@ip-10-0-3-163.ec2.internal 'bash -s' << 'ENDSSH'
+grep "overall_summary" /tmp/consumer-*.log
+ENDSSH
+[DEBUG 2024-12-04T04:33:36.555Z] STDOUT: /tmp/consumer-0-8acb0333.log:{"event":"overall_summary","averageLatencyMs":3.16,"totalMessages":8968,"producerCount":354}
+/tmp/consumer-0-8acb0333.log:{"event":"overall_summary","averageLatencyMs":3.16,"minLatencyMs":1,"maxLatencyMs":104,"medianLatencyMs":3,"p99LatencyMs":11,"p999LatencyMs":47,"p9999LatencyMs":104,"totalMessages":8968,"producerCount":354}
+/tmp/consumer-1-af5f6292.log:{"event":"overall_summary","averageLatencyMs":2.7,"totalMessages":11599,"producerCount":384}
+/tmp/consumer-1-af5f6292.log:{"event":"overall_summary","averageLatencyMs":2.7,"minLatencyMs":1,"maxLatencyMs":91,"medianLatencyMs":2,"p99LatencyMs":9,"p999LatencyMs":32,"p9999LatencyMs":91,"totalMessages":11599,"producerCount":384}
+/tmp/consumer-10-01b931d2.log:{"event":"overall_summary","averageLatencyMs":14.64,"totalMessages":15892,"producerCount":627}
+/tmp/consumer-10-01b931d2.log:{"event":"overall_summary","averageLatencyMs":14.64,"minLatencyMs":1,"maxLatencyMs":2917,"medianLatencyMs":2,"p99LatencyMs":26,"p999LatencyMs":2590,"p9999LatencyMs":2912,"totalMessages":15892,"producerCount":627}
+/tmp/consumer-11-3e0e98a1.log:{"event":"overall_summary","averageLatencyMs":14.14,"totalMessages":22566,"producerCount":681}
+/tmp/consumer-11-3e0e98a1.log:{"event":"overall_summary","averageLatencyMs":14.14,"minLatencyMs":1,"maxLatencyMs":2810,"medianLatencyMs":3,"p99LatencyMs":33,"p999LatencyMs":2348,"p9999LatencyMs":2718,"totalMessages":22566,"producerCount":681}
+/tmp/consumer-12-874e18eb.log:{"event":"overall_summary","averageLatencyMs":10.48,"totalMessages":26475,"producerCount":793}
+/tmp/consumer-12-874e18eb.log:{"event":"overall_summary","averageLatencyMs":10.48,"minLatencyMs":1,"maxLatencyMs":2874,"medianLatencyMs":3,"p99LatencyMs":22,"p999LatencyMs":2040,"p9999LatencyMs":2843,"totalMessages":26475,"producerCount":793}
+/tmp/consumer-13-8113c2d8.log:{"event":"overall_summary","averageLatencyMs":8.12,"totalMessages":25238,"producerCount":806}
+/tmp/consumer-13-8113c2d8.log:{"event":"overall_summary","averageLatencyMs":8.12,"minLatencyMs":1,"maxLatencyMs":2902,"medianLatencyMs":3,"p99LatencyMs":17,"p999LatencyMs":1871,"p9999LatencyMs":2833,"totalMessages":25238,"producerCount":806}
+/tmp/consumer-14-cf8c7bb6.log:{"event":"overall_summary","averageLatencyMs":7.19,"totalMessages":29252,"producerCount":792}
+/tmp/consumer-14-cf8c7bb6.log:{"event":"overall_summary","averageLatencyMs":7.19,"minLatencyMs":1,"maxLatencyMs":1946,"medianLatencyMs":3,"p99LatencyMs":16,"p999LatencyMs":1262,"p9999LatencyMs":1929,"totalMessages":29252,"producerCount":792}
+/tmp/consumer-15-c3757dfd.log:{"event":"overall_summary","averageLatencyMs":11.61,"totalMessages":31689,"producerCount":862}
+/tmp/consumer-15-c3757dfd.log:{"event":"overall_summary","averageLatencyMs":11.61,"minLatencyMs":1,"maxLatencyMs":2718,"medianLatencyMs":3,"p99LatencyMs":28,"p999LatencyMs":1805,"p9999LatencyMs":2583,"totalMessages":31689,"producerCount":862}
+/tmp/consumer-16-f8e3b078.log:{"event":"overall_summary","averageLatencyMs":19.81,"totalMessages":26984,"producerCount":870}
+/tmp/consumer-16-f8e3b078.log:{"event":"overall_summary","averageLatencyMs":19.81,"minLatencyMs":1,"maxLatencyMs":2880,"medianLatencyMs":3,"p99LatencyMs":531,"p999LatencyMs":2576,"p9999LatencyMs":2866,"totalMessages":26984,"producerCount":870}
+/tmp/consumer-17-13c4a8d9.log:{"event":"overall_summary","averageLatencyMs":14.52,"totalMessages":39438,"producerCount":945}
+/tmp/consumer-17-13c4a8d9.log:{"event":"overall_summary","averageLatencyMs":14.52,"minLatencyMs":1,"maxLatencyMs":2858,"medianLatencyMs":4,"p99LatencyMs":51,"p999LatencyMs":1752,"p9999LatencyMs":2738,"totalMessages":39438,"producerCount":945}
+/tmp/consumer-18-4051a707.log:{"event":"overall_summary","averageLatencyMs":20.59,"totalMessages":53415,"producerCount":1000}
+/tmp/consumer-18-4051a707.log:{"event":"overall_summary","averageLatencyMs":20.59,"minLatencyMs":1,"maxLatencyMs":2812,"medianLatencyMs":4,"p99LatencyMs":391,"p999LatencyMs":1797,"p9999LatencyMs":2673,"totalMessages":53415,"producerCount":1000}
+/tmp/consumer-19-8cc7eb0d.log:{"event":"overall_summary","averageLatenc
+[DEBUG 2024-12-04T04:33:36.555Z] STDOUT: yMs":40.18,"totalMessages":62502,"producerCount":1024}
+/tmp/consumer-19-8cc7eb0d.log:{"event":"overall_summary","averageLatencyMs":40.18,"minLatencyMs":1,"maxLatencyMs":2668,"medianLatencyMs":6,"p99LatencyMs":867,"p999LatencyMs":1507,"p9999LatencyMs":1992,"totalMessages":62502,"producerCount":1024}
+/tmp/consumer-2-fd2e303d.log:{"event":"overall_summary","averageLatencyMs":9.8,"totalMessages":12512,"producerCount":409}
+/tmp/consumer-2-fd2e303d.log:{"event":"overall_summary","averageLatencyMs":9.8,"minLatencyMs":1,"maxLatencyMs":2908,"medianLatencyMs":2,"p99LatencyMs":19,"p999LatencyMs":2244,"p9999LatencyMs":2907,"totalMessages":12512,"producerCount":409}
+/tmp/consumer-3-bd9e2e08.log:{"event":"overall_summary","averageLatencyMs":6.26,"totalMessages":13585,"producerCount":414}
+/tmp/consumer-3-bd9e2e08.log:{"event":"overall_summary","averageLatencyMs":6.26,"minLatencyMs":1,"maxLatencyMs":1707,"medianLatencyMs":3,"p99LatencyMs":10,"p999LatencyMs":1489,"p9999LatencyMs":1698,"totalMessages":13585,"producerCount":414}
+/tmp/consumer-4-9ffcb7e5.log:{"event":"overall_summary","averageLatencyMs":3.2,"totalMessages":13347,"producerCount":495}
+/tmp/consumer-4-9ffcb7e5.log:{"event":"overall_summary","averageLatencyMs":3.2,"minLatencyMs":1,"maxLatencyMs":177,"medianLatencyMs":3,"p99LatencyMs":8,"p999LatencyMs":52,"p9999LatencyMs":176,"totalMessages":13347,"producerCount":495}
+/tmp/consumer-5-6121ed11.log:{"event":"overall_summary","averageLatencyMs":8.61,"totalMessages":19235,"producerCount":571}
+/tmp/consumer-5-6121ed11.log:{"event":"overall_summary","averageLatencyMs":8.61,"minLatencyMs":1,"maxLatencyMs":1954,"medianLatencyMs":3,"p99LatencyMs":19,"p999LatencyMs":1427,"p9999LatencyMs":1912,"totalMessages":19235,"producerCount":571}
+/tmp/consumer-6-69a61a37.log:{"event":"overall_summary","averageLatencyMs":18.4,"totalMessages":13229,"producerCount":527}
+/tmp/consumer-6-69a61a37.log:{"event":"overall_summary","averageLatencyMs":18.4,"minLatencyMs":1,"maxLatencyMs":2793,"medianLatencyMs":2,"p99LatencyMs":337,"p999LatencyMs":2581,"p9999LatencyMs":2730,"totalMessages":13229,"producerCount":527}
+/tmp/consumer-7-acef91ad.log:{"event":"overall_summary","averageLatencyMs":6.79,"totalMessages":13367,"producerCount":568}
+/tmp/consumer-7-acef91ad.log:{"event":"overall_summary","averageLatencyMs":6.79,"minLatencyMs":1,"maxLatencyMs":2776,"medianLatencyMs":3,"p99LatencyMs":15,"p999LatencyMs":1594,"p9999LatencyMs":2593,"totalMessages":13367,"producerCount":568}
+/tmp/consumer-8-db3f1146.log:{"event":"overall_summary","averageLatencyMs":9.53,"totalMessages":20458,"producerCount":572}
+/tmp/consumer-8-db3f1146.log:{"event":"overall_summary","averageLatencyMs":9.53,"minLatencyMs":1,"maxLatencyMs":2834,"medianLatencyMs":3,"p99LatencyMs":16,"p999LatencyMs":2211,"p9999LatencyMs":2778,"totalMessages":20458,"producerCount":572}
+/tmp/consumer-9-b8886ea1.log:{"event":"overall_summary","averageLatencyMs":13.79,"totalMessages":19525,"producerCount":665}
+/tmp/consumer-9-b8886ea1.log:{"event":"overall_summary","averageLatencyMs":13.79,"minLatencyMs":1,"maxLatencyMs":2889,"medianLatencyMs":2,"p99LatencyMs":23,"p999LatencyMs":2655,"p9999LatencyMs":2884,"totalMessages":19525,"producerCount":665}
+[DEBUG 2024-12-04T04:33:36.556Z] Command completed with exit code: 0
+Collected consumer results from ip-10-0-3-163.ec2.internal
+Test results collection completed.
+root@b85cc147d0dc:~/repo/dev/omni/monorepo/kafkajs.latency/cli# 
