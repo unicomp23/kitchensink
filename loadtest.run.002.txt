@@ -1,0 +1,92 @@
+----------------------
+Summary:
+Total samples: 3600165
+Min: 1ms
+Max: 284ms
+
+50th percentile: 45ms
+75th percentile: 56ms
+90th percentile: 64ms
+95th percentile: 68ms
+99th percentile: 76ms
+99.9th percentile: 85ms
+99.99th percentile: 94ms
+
+Detailed report written to: latency_report_2024-12-11T16-12-26-652Z.json
+
+Summary:
+Total samples: 3599835
+Min: 1ms
+Max: 299ms
+
+50th percentile: 55ms
+75th percentile: 66ms
+90th percentile: 75ms
+95th percentile: 80ms
+99th percentile: 89ms
+99.9th percentile: 99ms
+99.99th percentile: 110ms
+
+Detailed report written to: latency_report_2024-12-11T16-12-28-989Z.json
+
+----------------------
+Summary:
+Total samples: 3601321
+Min: 1ms
+Max: 156ms
+
+50th percentile: 57ms
+75th percentile: 70ms
+90th percentile: 79ms
+95th percentile: 84ms
+99th percentile: 93ms
+99.9th percentile: 105ms
+99.99th percentile: 115ms
+
+Detailed report written to: latency_report_2024-12-11T16-12-31-333Z.json
+
+Summary:
+Total samples: 3598679
+Min: 1ms
+Max: 297ms
+
+50th percentile: 46ms
+75th percentile: 57ms
+90th percentile: 65ms
+95th percentile: 70ms
+99th percentile: 78ms
+99.9th percentile: 90ms
+99.99th percentile: 225ms
+
+Detailed report written to: latency_report_2024-12-11T16-12-33-679Z.json
+
+----------------------
+Summary:
+Total samples: 3598868
+Min: 1ms
+Max: 471ms
+
+50th percentile: 46ms
+75th percentile: 56ms
+90th percentile: 64ms
+95th percentile: 68ms
+99th percentile: 76ms
+99.9th percentile: 88ms
+99.99th percentile: 101ms
+
+Detailed report written to: latency_report_2024-12-11T16-12-36-097Z.json
+
+Summary:
+Total samples: 3601132
+Min: 2ms
+Max: 522ms
+
+50th percentile: 56ms
+75th percentile: 68ms
+90th percentile: 77ms
+95th percentile: 81ms
+99th percentile: 90ms
+99.9th percentile: 103ms
+99.99th percentile: 254ms
+
+Detailed report written to: latency_report_2024-12-11T16-12-38-480Z.json
