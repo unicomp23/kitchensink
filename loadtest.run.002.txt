@@ -90,3 +90,397 @@ Max: 522ms
 99.99th percentile: 254ms
 
 Detailed report written to: latency_report_2024-12-11T16-12-38-480Z.json
+
+
+----------------------
+[
+{
+    "average_latency": 45.86314682799261,
+    "median_latency": 45.0,
+    "percentile_99.99": 94.0,
+    "messages_meeting_kpi": 2273259,
+    "messages_not_meeting_kpi": 1326906,
+    "top_5_highest_latency": [
+        {
+            "consumer_id": "consumer-single-1733875956659",
+            "ProducerInstance": "ip-10-0-0-211.ec2.internal",
+            "ConsumerInstance": "ip-10-0-1-170.ec2.internal",
+            "UUID": "5ab17216-9c25-4853-8b9d-6bd7b4cecb63",
+            "Data": "sample_data_message_3992",
+            "ProducerTimestamp": "2024-12-11T00:50:33.033Z",
+            "ConsumerTimestamp": "2024-12-11T00:50:33.317Z",
+            "Latency": 284,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733875956659",
+            "ProducerInstance": "ip-10-0-0-139.ec2.internal",
+            "ConsumerInstance": "ip-10-0-1-170.ec2.internal",
+            "UUID": "7cda7e25-0634-4d66-8283-38e3665390cc",
+            "Data": "sample_data_message_5272",
+            "ProducerTimestamp": "2024-12-11T01:00:44.091Z",
+            "ConsumerTimestamp": "2024-12-11T01:00:44.366Z",
+            "Latency": 275,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733875956659",
+            "ProducerInstance": "ip-10-0-2-101.ec2.internal",
+            "ConsumerInstance": "ip-10-0-1-170.ec2.internal",
+            "UUID": "12ce59f1-ab7e-41ab-b47f-d5861ea36bee",
+            "Data": "sample_data_message_2493",
+            "ProducerTimestamp": "2024-12-11T00:37:58.141Z",
+            "ConsumerTimestamp": "2024-12-11T00:37:58.252Z",
+            "Latency": 111,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733875956659",
+            "ProducerInstance": "ip-10-0-2-4.ec2.internal",
+            "ConsumerInstance": "ip-10-0-1-170.ec2.internal",
+            "UUID": "5d0efaff-ae89-4222-953d-a277c39db545",
+            "Data": "sample_data_message_2492",
+            "ProducerTimestamp": "2024-12-11T00:37:58.141Z",
+            "ConsumerTimestamp": "2024-12-11T00:37:58.252Z",
+            "Latency": 111,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733875956659",
+            "ProducerInstance": "ip-10-0-1-228.ec2.internal",
+            "ConsumerInstance": "ip-10-0-1-170.ec2.internal",
+            "UUID": "0d5f16c5-fef7-4d1a-b9be-ec920ddbc58c",
+            "Data": "sample_data_message_6689",
+            "ProducerTimestamp": "2024-12-11T01:12:12.785Z",
+            "ConsumerTimestamp": "2024-12-11T01:12:12.896Z",
+            "Latency": 111,
+            "KPI": "exceeds KPI"
+        }
+    ]
+}
+,
+{
+    "average_latency": 55.18091523639278,
+    "median_latency": 55.0,
+    "percentile_99.99": 110.0,
+    "messages_meeting_kpi": 1444620,
+    "messages_not_meeting_kpi": 2155215,
+    "top_5_highest_latency": [
+        {
+            "consumer_id": "consumer-single-1733875958843",
+            "ProducerInstance": "ip-10-0-0-23.ec2.internal",
+            "ConsumerInstance": "ip-10-0-0-177.ec2.internal",
+            "UUID": "ace74e9e-7c85-48c1-9fb9-d5abf20ce419",
+            "Data": "sample_data_message_2219",
+            "ProducerTimestamp": "2024-12-11T00:35:16.698Z",
+            "ConsumerTimestamp": "2024-12-11T00:35:16.997Z",
+            "Latency": 299,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733875958843",
+            "ProducerInstance": "ip-10-0-0-197.ec2.internal",
+            "ConsumerInstance": "ip-10-0-0-177.ec2.internal",
+            "UUID": "9a1159e8-6893-44b2-a9d5-00d4207e72b8",
+            "Data": "sample_data_message_2172",
+            "ProducerTimestamp": "2024-12-11T00:35:16.746Z",
+            "ConsumerTimestamp": "2024-12-11T00:35:17.045Z",
+            "Latency": 299,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733875958843",
+            "ProducerInstance": "ip-10-0-1-163.ec2.internal",
+            "ConsumerInstance": "ip-10-0-0-177.ec2.internal",
+            "UUID": "b5efa643-2bb4-48b9-a3e5-67d873836024",
+            "Data": "sample_data_message_2211",
+            "ProducerTimestamp": "2024-12-11T00:35:16.712Z",
+            "ConsumerTimestamp": "2024-12-11T00:35:17.010Z",
+            "Latency": 298,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733875958843",
+            "ProducerInstance": "ip-10-0-0-139.ec2.internal",
+            "ConsumerInstance": "ip-10-0-0-177.ec2.internal",
+            "UUID": "89d54a33-40e2-478c-ab43-5d589b348413",
+            "Data": "sample_data_message_2236",
+            "ProducerTimestamp": "2024-12-11T00:35:16.741Z",
+            "ConsumerTimestamp": "2024-12-11T00:35:17.038Z",
+            "Latency": 297,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733875958843",
+            "ProducerInstance": "ip-10-0-0-225.ec2.internal",
+            "ConsumerInstance": "ip-10-0-0-177.ec2.internal",
+            "UUID": "9d75e6d7-a7d5-4169-acdf-138a077b3d10",
+            "Data": "sample_data_message_2229",
+            "ProducerTimestamp": "2024-12-11T00:35:16.725Z",
+            "ConsumerTimestamp": "2024-12-11T00:35:17.021Z",
+            "Latency": 296,
+            "KPI": "exceeds KPI"
+        }
+    ]
+}
+,
+{
+    "average_latency": 57.85005529915273,
+    "median_latency": 57.0,
+    "percentile_99.99": 115.0,
+    "messages_meeting_kpi": 1249485,
+    "messages_not_meeting_kpi": 2351836,
+    "top_5_highest_latency": [
+        {
+            "consumer_id": "consumer-single-1733867758474",
+            "ProducerInstance": "ip-10-0-1-67.ec2.internal",
+            "ConsumerInstance": "ip-10-0-0-118.ec2.internal",
+            "UUID": "01e206ee-0068-450a-ace5-ff2d3cca6386",
+            "Data": "sample_data_message_1813",
+            "ProducerTimestamp": "2024-12-10T22:18:28.846Z",
+            "ConsumerTimestamp": "2024-12-10T22:18:29.002Z",
+            "Latency": 156,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733867758474",
+            "ProducerInstance": "ip-10-0-1-100.ec2.internal",
+            "ConsumerInstance": "ip-10-0-0-118.ec2.internal",
+            "UUID": "df12c32c-cc3c-46b6-b335-f21326fc8374",
+            "Data": "sample_data_message_1811",
+            "ProducerTimestamp": "2024-12-10T22:18:28.844Z",
+            "ConsumerTimestamp": "2024-12-10T22:18:28.998Z",
+            "Latency": 154,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733867758474",
+            "ProducerInstance": "ip-10-0-1-149.ec2.internal",
+            "ConsumerInstance": "ip-10-0-0-118.ec2.internal",
+            "UUID": "3249f171-a4b3-4ed9-a93e-499aa87fab04",
+            "Data": "sample_data_message_1876",
+            "ProducerTimestamp": "2024-12-10T22:18:28.829Z",
+            "ConsumerTimestamp": "2024-12-10T22:18:28.977Z",
+            "Latency": 148,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733867758474",
+            "ProducerInstance": "ip-10-0-1-28.ec2.internal",
+            "ConsumerInstance": "ip-10-0-0-118.ec2.internal",
+            "UUID": "28a4f9da-a90e-4eba-8af5-849ee0cf8771",
+            "Data": "sample_data_message_1781",
+            "ProducerTimestamp": "2024-12-10T22:18:28.829Z",
+            "ConsumerTimestamp": "2024-12-10T22:18:28.977Z",
+            "Latency": 148,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733867758474",
+            "ProducerInstance": "ip-10-0-0-138.ec2.internal",
+            "ConsumerInstance": "ip-10-0-0-118.ec2.internal",
+            "UUID": "714e852c-7f7e-4e4b-9ad8-1d439d9db819",
+            "Data": "sample_data_message_1873",
+            "ProducerTimestamp": "2024-12-10T22:18:28.846Z",
+            "ConsumerTimestamp": "2024-12-10T22:18:28.994Z",
+            "Latency": 148,
+            "KPI": "exceeds KPI"
+        }
+    ]
+}
+,
+{
+    "average_latency": 46.662422238827084,
+    "median_latency": 46.0,
+    "percentile_99.99": 224.13219999941066,
+    "messages_meeting_kpi": 2188921,
+    "messages_not_meeting_kpi": 1409758,
+    "top_5_highest_latency": [
+        {
+            "consumer_id": "consumer-single-1733867789266",
+            "ProducerInstance": "ip-10-0-1-149.ec2.internal",
+            "ConsumerInstance": "ip-10-0-1-129.ec2.internal",
+            "UUID": "0c9b03e1-3452-4fe5-9f8a-fbf810d25f04",
+            "Data": "sample_data_message_3261",
+            "ProducerTimestamp": "2024-12-10T22:30:05.532Z",
+            "ConsumerTimestamp": "2024-12-10T22:30:05.829Z",
+            "Latency": 297,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733867789266",
+            "ProducerInstance": "ip-10-0-1-133.ec2.internal",
+            "ConsumerInstance": "ip-10-0-1-129.ec2.internal",
+            "UUID": "95e303e4-b5ca-4b08-b1d7-78c4f3b27e9e",
+            "Data": "sample_data_message_3210",
+            "ProducerTimestamp": "2024-12-10T22:30:05.532Z",
+            "ConsumerTimestamp": "2024-12-10T22:30:05.826Z",
+            "Latency": 294,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733867789266",
+            "ProducerInstance": "ip-10-0-1-133.ec2.internal",
+            "ConsumerInstance": "ip-10-0-1-129.ec2.internal",
+            "UUID": "6ce85250-6d44-4ff4-8c55-c70acf7fec1a",
+            "Data": "sample_data_message_3211",
+            "ProducerTimestamp": "2024-12-10T22:30:05.552Z",
+            "ConsumerTimestamp": "2024-12-10T22:30:05.846Z",
+            "Latency": 294,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733867789266",
+            "ProducerInstance": "ip-10-0-1-106.ec2.internal",
+            "ConsumerInstance": "ip-10-0-1-129.ec2.internal",
+            "UUID": "a08afd14-1a79-4478-aa39-784edecfc5a3",
+            "Data": "sample_data_message_3211",
+            "ProducerTimestamp": "2024-12-10T22:30:05.549Z",
+            "ConsumerTimestamp": "2024-12-10T22:30:05.842Z",
+            "Latency": 293,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733867789266",
+            "ProducerInstance": "ip-10-0-0-146.ec2.internal",
+            "ConsumerInstance": "ip-10-0-1-129.ec2.internal",
+            "UUID": "d9154aca-cfdd-4ca1-8e04-97d5fc796576",
+            "Data": "sample_data_message_3265",
+            "ProducerTimestamp": "2024-12-10T22:30:05.564Z",
+            "ConsumerTimestamp": "2024-12-10T22:30:05.857Z",
+            "Latency": 293,
+            "KPI": "exceeds KPI"
+        }
+    ]
+}
+,
+{
+    "average_latency": 46.47123762249685,
+    "median_latency": 46.0,
+    "percentile_99.99": 101.0,
+    "messages_meeting_kpi": 2211124,
+    "messages_not_meeting_kpi": 1387744,
+    "top_5_highest_latency": [
+        {
+            "consumer_id": "consumer-single-1733856826675",
+            "ProducerInstance": "ip-10-0-1-19.ec2.internal",
+            "ConsumerInstance": "ip-10-0-1-115.ec2.internal",
+            "UUID": "cd313f8a-748f-417f-b66a-148f693e3317",
+            "Data": "sample_data_message_3242",
+            "ProducerTimestamp": "2024-12-10T19:24:35.050Z",
+            "ConsumerTimestamp": "2024-12-10T19:24:35.521Z",
+            "Latency": 471,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733856826675",
+            "ProducerInstance": "ip-10-0-1-66.ec2.internal",
+            "ConsumerInstance": "ip-10-0-1-115.ec2.internal",
+            "UUID": "bd5910fa-c6a8-40c5-bef0-ccc4d371573a",
+            "Data": "sample_data_message_3264",
+            "ProducerTimestamp": "2024-12-10T19:24:34.849Z",
+            "ConsumerTimestamp": "2024-12-10T19:24:35.317Z",
+            "Latency": 468,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733856826675",
+            "ProducerInstance": "ip-10-0-0-28.ec2.internal",
+            "ConsumerInstance": "ip-10-0-1-115.ec2.internal",
+            "UUID": "4bf0d9c7-560f-4594-a124-71c7d4227086",
+            "Data": "sample_data_message_98",
+            "ProducerTimestamp": "2024-12-10T18:58:51.185Z",
+            "ConsumerTimestamp": "2024-12-10T18:58:51.489Z",
+            "Latency": 304,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733856826675",
+            "ProducerInstance": "ip-10-0-1-52.ec2.internal",
+            "ConsumerInstance": "ip-10-0-1-115.ec2.internal",
+            "UUID": "92faf034-1b53-4c8d-8bf5-e6e42070d8bc",
+            "Data": "sample_data_message_194",
+            "ProducerTimestamp": "2024-12-10T18:58:51.176Z",
+            "ConsumerTimestamp": "2024-12-10T18:58:51.475Z",
+            "Latency": 299,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733856826675",
+            "ProducerInstance": "ip-10-0-2-163.ec2.internal",
+            "ConsumerInstance": "ip-10-0-1-115.ec2.internal",
+            "UUID": "3716da9b-9f02-4e35-88b2-b9561927c012",
+            "Data": "sample_data_message_195",
+            "ProducerTimestamp": "2024-12-10T18:58:51.177Z",
+            "ConsumerTimestamp": "2024-12-10T18:58:51.475Z",
+            "Latency": 298,
+            "KPI": "exceeds KPI"
+        }
+    ]
+}
+,
+{
+    "average_latency": 56.69390347257473,
+    "median_latency": 56.0,
+    "percentile_99.99": 254.0,
+    "messages_meeting_kpi": 1321882,
+    "messages_not_meeting_kpi": 2279250,
+    "top_5_highest_latency": [
+        {
+            "consumer_id": "consumer-single-1733856848489",
+            "ProducerInstance": "ip-10-0-1-231.ec2.internal",
+            "ConsumerInstance": "ip-10-0-0-38.ec2.internal",
+            "UUID": "2f2392f6-a594-48a9-b584-36a9fca480f1",
+            "Data": "sample_data_message_3265",
+            "ProducerTimestamp": "2024-12-10T19:24:34.709Z",
+            "ConsumerTimestamp": "2024-12-10T19:24:35.231Z",
+            "Latency": 522,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733856848489",
+            "ProducerInstance": "ip-10-0-1-19.ec2.internal",
+            "ConsumerInstance": "ip-10-0-0-38.ec2.internal",
+            "UUID": "954f9856-791b-4af0-9d50-c0e51ef19c61",
+            "Data": "sample_data_message_3243",
+            "ProducerTimestamp": "2024-12-10T19:24:34.951Z",
+            "ConsumerTimestamp": "2024-12-10T19:24:35.424Z",
+            "Latency": 473,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733856848489",
+            "ProducerInstance": "ip-10-0-2-93.ec2.internal",
+            "ConsumerInstance": "ip-10-0-0-38.ec2.internal",
+            "UUID": "e1231bc1-9de5-430e-b03e-8da9372fef6e",
+            "Data": "sample_data_message_2978",
+            "ProducerTimestamp": "2024-12-10T19:21:49.761Z",
+            "ConsumerTimestamp": "2024-12-10T19:21:50.085Z",
+            "Latency": 324,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733856848489",
+            "ProducerInstance": "ip-10-0-0-252.ec2.internal",
+            "ConsumerInstance": "ip-10-0-0-38.ec2.internal",
+            "UUID": "afd313b8-a1f8-4c70-a96c-3ea0f2f9bbb7",
+            "Data": "sample_data_message_2971",
+            "ProducerTimestamp": "2024-12-10T19:21:49.763Z",
+            "ConsumerTimestamp": "2024-12-10T19:21:50.085Z",
+            "Latency": 322,
+            "KPI": "exceeds KPI"
+        },
+        {
+            "consumer_id": "consumer-single-1733856848489",
+            "ProducerInstance": "ip-10-0-1-158.ec2.internal",
+            "ConsumerInstance": "ip-10-0-0-38.ec2.internal",
+            "UUID": "980c8e60-c7e8-4184-baa4-709b7edfd953",
+            "Data": "sample_data_message_2879",
+            "ProducerTimestamp": "2024-12-10T19:21:49.746Z",
+            "ConsumerTimestamp": "2024-12-10T19:21:50.067Z",
+            "Latency": 321,
+            "KPI": "exceeds KPI"
+        }
+    ]
+}
+]
