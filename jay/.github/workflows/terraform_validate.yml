@@ -1,0 +1,123 @@
+name: Validate Terraform Code
+
+on:
+  workflow_call:
+    inputs:
+      tf_version:
+        description: 'The version of Terraform to use'
+        default: '1.9.8'
+        type: string
+      working_directory:
+        description: 'The directory to run commands in'
+        default: 'dev'
+        required: true
+        type: string
+      aws_region:
+        description: 'The AWS region to use by default'
+        default: 'us-east-1'
+        type: string
+      event_name:
+        description: 'The name of the event that called the workflow.'
+        type: string
+      role_to_assume:
+        type: string
+        description: AWS role to asume
+        required: true
+
+jobs:
+  terraform-validate:
+    # needs: [ static_checks ]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: terraform/${{ inputs.working_directory }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ inputs.tf_version }}
+          terraform_wrapper: false
+      - name: Configure AWS credentials for the aws account with the OIDC provider
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ inputs.role_to_assume }}
+          aws-region: ${{ inputs.aws_region }}
+      - name: Configure Private Modules Credentials
+        id: private-modules
+        uses: philips-labs/terraform-private-modules-action@v1
+        with:
+          org: ${{ github.repository_owner }}
+          token: ${{ secrets.TF_MODULES_REPO_TOKEN }}
+      - name: Terraform Init
+        id: init
+        run: |
+          pwd
+          terraform init
+        env:
+          AWS_REGION: ${{ inputs.aws_region }}
+      - name: Terraform fmt
+        id: fmt
+        run: |
+          pwd
+          terraform fmt -check
+      - name: Terraform Validate
+        id: validate
+        run: |
+          pwd
+          set -o pipefail
+          terraform validate -no-color 2>&1 | tee ${GITHUB_WORKSPACE}/validation.out
+      - name: Create / Update PR comment
+        uses: actions/github-script@v6
+        if: ${{ inputs.event_name == 'pull_request' }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            // 1. Retrieve existing bot comments for the PR
+            const pusher_info = 'Action: \`${{ github.event_name }}\`, Working Directory: \`${{ inputs.working_directory }}\`, Workflow (Validate): \`${{ github.workflow }}\`'
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            })
+            const botComment = comments.find(comment => {
+              return comment.user.type === 'Bot' && comment.body.includes(pusher_info)
+            })
+
+            // 2. Prepare format of the comment
+            const { readFile } = require("fs/promises")
+            const validation_file = await readFile('validation.out')
+            const validation = validation_file.length > 64000 ? decodeURI(validation_file.toString('ascii').slice(-64000)) : validation_file
+            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+            #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+            #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
+            <details><summary>Validation Output</summary>
+
+            \`\`\`\n
+            ${validation}
+            \`\`\`
+
+            </details>
+
+            *Pusher: @${{ github.actor }}, ${pusher_info}*`;
+
+            // 3. If we have a comment, update it, otherwise create a new one
+            if (botComment) {
+              github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: output
+              })
+            } else {
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: output
+              })
+            }
+      - name: Terraform Validate Status
+        if: steps.validate.outcome == 'failure'
+        run: exit 1
+        shell: bash

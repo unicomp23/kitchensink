@@ -1,0 +1,131 @@
+name: Plan Destroy Terraform Deployment
+
+on:
+  workflow_call:
+    inputs:
+      tf_version:
+        description: 'The version of Terraform to use'
+        default: '1.9.8'
+        type: string
+      aws_region:
+        description: 'The AWS region to use by default'
+        default: 'us-east-1'
+        type: string
+      working_directory:
+        description: 'The directory to run commands in'
+        default: 'dev'
+        required: true
+        type: string
+      event_name:
+        description: 'The name of the event that called the workflow.'
+        required: false
+        type: string
+      tfplan_s3_bucket:
+        description: URI of the S3 bucket where plans are going to be saved
+        required: true
+        type: string
+      role_to_assume:
+        description: ARN of the role that has to be assumed by the steps that configures AWS credentials
+        required: true
+        type: string
+
+env:
+  TF_PLAN_PATH: ${{ github.workspace}}/terraform/${{ inputs.working_directory }}/tfplan-${{ inputs.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+  TFPLAN_S3_PATH: ${{ inputs.tfplan_s3_bucket }}/terraform/${{inputs.working_directory}}/tfplan-${{ inputs.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+jobs:
+  terraform-plan-destroy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      pull-requests: write
+    defaults:
+      run:
+        working-directory: terraform/${{ inputs.working_directory }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ inputs.tf_version }}
+          terraform_wrapper: false
+      - name: Configure AWS credentials from shared services account
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ inputs.role_to_assume }}
+          aws-region: ${{ inputs.aws_region }}
+      - name: Configure Private Modules Credentials
+        id: private-modules
+        uses: philips-labs/terraform-private-modules-action@v1
+        with:
+          org: ${{ github.repository_owner }}
+          token: ${{ secrets.TF_MODULES_REPO_TOKEN }}
+      - name: Terraform Init
+        id: init
+        run: terraform init
+        env:
+          AWS_REGION: ${{ inputs.aws_region }}
+      - name: Terraform Plan Destroy
+        id: plan
+        env:
+          AWS_REGION: ${{ inputs.aws_region }}
+        run: |
+          pwd
+          set -o pipefail
+          terraform plan -input=false -destroy -no-color -out=${{ env.TF_PLAN_PATH }} | tee ${GITHUB_WORKSPACE}/plan.out
+        continue-on-error: true
+      - name: Create / Update PR comment
+        uses: actions/github-script@v6
+        if: ${{ inputs.event_name == 'pull_request' }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            // 1. Retrieve existing bot comments for the PR
+            const pusher_info = 'Action: \`${{ github.event_name }}\`, Working Directory: \`${{ inputs.working_directory }}\`, Workflow (Plan): \`${{ github.workflow }}\`'
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            })
+            const botComment = comments.find(comment => {
+              return comment.user.type === 'Bot' && comment.body.includes(pusher_info)
+            })
+
+            // 2. Prepare format of the comment
+            const { readFile } = require("fs/promises")
+            const plan_file = await readFile('plan.out')
+            const plan = plan_file.length > 64000 ? decodeURI(plan_file.toString('ascii').slice(-64000)) : plan_file
+            const output = `#### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+
+            <details><summary>Show Plan</summary>
+
+            \`\`\`\n
+            ${plan}
+            \`\`\`
+            </details>
+
+            *Pusher: @${{ github.actor }}, ${pusher_info}*`;
+
+            // 3. If we have a comment, update it, otherwise create a new one
+            if (botComment) {
+              github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: output
+              })
+            } else {
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: output
+              })
+            }
+      - name: Terraform Plan Status
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
+        shell: bash
+      - name: Upload Plan to S3
+        run: aws s3 cp ${{ env.TF_PLAN_PATH }} ${{ env.TFPLAN_S3_PATH }} --sse AES256

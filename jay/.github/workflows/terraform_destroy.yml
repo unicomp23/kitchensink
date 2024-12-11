@@ -1,0 +1,75 @@
+name: Destroy Terraform Deployment
+
+on:
+  workflow_call:
+    inputs:
+      tf_version:
+        description: 'The version of Terraform to use'
+        default: '1.9.8'
+        type: string
+      aws_region:
+        description: 'The AWS region to use by default'
+        default: 'us-east-1'
+        type: string
+      working_directory:
+        description: 'The directory to run commands in'
+        default: 'prod'
+        required: true
+        type: string
+      event_name:
+        description: 'The name of the event that called the workflow.'
+        required: false
+        type: string
+      tfplan_s3_bucket:
+        description: URI of the S3 bucket where plans are going to be saved
+        required: true
+        type: string
+      role_to_assume:
+        description: ARN of the role that has to be assumed by the steps that configures AWS credentials
+        required: true
+        type: string
+
+env:
+  TF_PLAN_PATH: ${{ github.workspace}}/terraform/${{ inputs.working_directory }}/tfplan-${{ inputs.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+  TFPLAN_S3_PATH: ${{ inputs.tfplan_s3_bucket }}/terraform/${{inputs.working_directory}}/tfplan-${{ inputs.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+jobs:
+  terraform-destroy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    defaults:
+      run:
+        working-directory: terraform/${{ inputs.working_directory }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ inputs.tf_version }}
+          terraform_wrapper: false
+      - name: Configure AWS credentials from shared services account
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ inputs.role_to_assume }}
+          aws-region: ${{ inputs.aws_region }}
+      - name: Configure Private Modules Credentials
+        id: private-modules
+        uses: philips-labs/terraform-private-modules-action@v1
+        with:
+          org: ${{ github.repository_owner }}
+          token: ${{ secrets.TF_MODULES_REPO_TOKEN }}
+      - name: Terraform Init
+        id: init
+        run: terraform init
+        env:
+          AWS_REGION: ${{ inputs.aws_region }}
+      - name: Download Plan from S3
+        run: aws s3 cp ${{ env.TFPLAN_S3_PATH }} ${{ env.TF_PLAN_PATH }} --sse AES256
+      - name: Terraform Destroy
+        id: destroy
+        env:
+          AWS_REGION: ${{ inputs.aws_region }}
+        run: |
+          terraform apply -destroy -input=false -auto-approve -no-color ${{ env.TF_PLAN_PATH }}

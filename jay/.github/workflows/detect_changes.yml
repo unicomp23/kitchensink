@@ -1,0 +1,29 @@
+name: Detect Changes
+
+on:
+  workflow_call:
+    outputs:
+        folders:
+          description: list of folders that have changes
+          value: ${{ jobs.detect.outputs.folders }}
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    # Required permissions
+    permissions:
+      id-token: write
+      contents: read
+      pull-requests: read
+    outputs:
+        folders: ${{ steps.filter.outputs.changes }}
+
+    steps:
+      # For pull requests it's not necessary to check out the code
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          # Folders where code changes will be detected
+          filters: |
+            dev:
+                - 'terraform/dev/**'

@@ -1,0 +1,11 @@
+schemaVersion: '2.2'
+description: 'Custom SSM Commands'
+parameters: {}
+mainSteps:
+  - action: 'aws:runShellScript'
+    name: 'CustomCommands'
+    inputs:
+      runCommand:
+%{ for cmd in commands ~}
+        - ${cmd}
+%{ endfor ~}

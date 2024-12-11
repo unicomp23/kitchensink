@@ -1,0 +1,18 @@
+services:
+  kafka-consumer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - SCRIPT_TYPE=consumer # Indicates to run consumer.py
+      - BOOTSTRAP_SERVERS=${BOOTSTRAP_SERVERS}
+      - TOPIC_NAME=${TOPIC_NAME}
+      - GROUP_ID=${GROUP_ID}
+      - FETCH_MIN_BYTES=${FETCH_MIN_BYTES}
+    deploy:
+      replicas: 1  # Number of consumers
+    volumes:
+      - "/home/ec2-user/logs:/logs" # Shared logs directory on host
+    restart: always # Consumers run continuously
+    entrypoint: ["sh", "-c", "python consumer.py"]
+

@@ -1,0 +1,56 @@
+name: Terraform Plan on Pull Request Opened/Updated
+on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - opened
+      - edited
+      - reopened
+      - synchronize
+      - ready_for_review
+
+jobs:
+  detect-changes:
+    uses: ./.github/workflows/detect_changes.yml
+    permissions:
+      id-token: write
+      contents: read
+      pull-requests: read
+
+  validate:
+    needs: [detect-changes]
+    if: ${{ needs.detect-changes.outputs.folders != '[]'}}
+    strategy:
+      fail-fast: false
+      matrix:
+        folder: ${{fromJson(needs.detect-changes.outputs.folders)}}
+    uses: ./.github/workflows/terraform_validate.yml
+    permissions:
+      id-token: write
+      contents: read
+      pull-requests: write
+    with:
+      working_directory: ${{ matrix.folder }}
+      role_to_assume: ${{ vars.AWS_ASSUME_ROLE }}
+
+  plan:
+    needs: [detect-changes, validate]
+    if: ${{ needs.detect-changes.outputs.folders != '[]'}}
+    strategy:
+      fail-fast: false
+      matrix:
+        folder: ${{fromJson(needs.detect-changes.outputs.folders)}}
+    uses: ./.github/workflows/terraform_plan.yml
+    with:
+      tf_version: ${{ vars.TF_VERSION }}
+      aws_region: ${{ vars.AWS_REGION }}
+      working_directory: ${{ matrix.folder }}
+      event_name: pull_request
+      role_to_assume: ${{ vars.AWS_ASSUME_ROLE }}
+      tfplan_s3_bucket: ${{ vars.TFPLAN_S3_BUCKET}}
+    secrets: inherit
+    permissions:
+      id-token: write
+      contents: read
+      pull-requests: write

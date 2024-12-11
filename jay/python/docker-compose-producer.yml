@@ -1,0 +1,20 @@
+services:
+  kafka-producer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - SCRIPT_TYPE=producer # Indicates to run producer.py
+      - BOOTSTRAP_SERVERS=${BOOTSTRAP_SERVERS}
+      - TOPIC_NAME=${TOPIC_NAME}
+      - LINGER_MS=${LINGER_MS}
+      - BATCH_SIZE=${BATCH_SIZE}
+      - COMPRESSION_TYPE=${COMPRESSION_TYPE}
+      - ACK=${ACK}
+      - NUM_THREADS=${NUM_THREADS}
+      - NUM_MESSAGES=${NUM_MESSAGES}
+    deploy:
+      replicas: 1 # Number of producers
+    restart: "no" # Producer stops after finishing its work
+    entrypoint: ["sh", "-c", "python producer.py"]
+

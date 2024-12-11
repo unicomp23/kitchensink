@@ -1,0 +1,56 @@
+name: "CAUTION: Manual Terraform Destroy"
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'The AWS Environment where the resources will be destroyed'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+        - dev
+
+
+jobs:
+  validate-terraform:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    uses: ./.github/workflows/terraform_validate.yml
+    with:
+      tf_version: ${{ vars.TF_VERSION }}
+      working_directory: ${{ inputs.environment }}
+      role_to_assume: ${{ vars.AWS_ASSUME_ROLE }}
+    secrets: inherit
+    permissions:
+      id-token: write
+      contents: read
+
+  plan-terraform-destroy:
+    needs: [validate-terraform]
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    uses: ./.github/workflows/terraform_plan_destroy.yml
+    with:
+      tf_version: ${{ vars.TF_VERSION }}
+      role_to_assume: ${{ vars.AWS_ASSUME_ROLE }}
+      tfplan_s3_bucket: ${{ vars.TFPLAN_S3_BUCKET}}
+      working_directory: ${{ inputs.environment }}
+      event_name: manual
+    secrets: inherit
+    permissions:
+      id-token: write
+      contents: read
+      pull-requests: write # Shouldn't need this, but Github doesn't let us set this dynamically
+
+  destroy-terraform:
+    needs: [plan-terraform-destroy]
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    uses: ./.github/workflows/terraform_destroy.yml
+    with:
+      tf_version: ${{ vars.TF_VERSION }}
+      role_to_assume: ${{ vars.AWS_ASSUME_ROLE }}
+      tfplan_s3_bucket: ${{ vars.TFPLAN_S3_BUCKET}}
+      working_directory: ${{ inputs.environment }}
+      event_name: manual
+    secrets: inherit
+    permissions:
+      id-token: write
+      contents: read

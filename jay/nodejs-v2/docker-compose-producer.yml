@@ -1,0 +1,20 @@
+services:
+  kafka-producer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - SCRIPT_TYPE=producer # Indicates to run producer.js
+      - BOOTSTRAP_SERVERS=${BOOTSTRAP_SERVERS}
+      - TOPIC_NAME=${TOPIC_NAME}
+      - NUM_THREADS=${NUM_THREADS}
+      - NUM_MESSAGES=${NUM_MESSAGES}
+      - KPI_THRESHOLD=${KPI_THRESHOLD}
+      - MESSAGE_INTERVAL=${MESSAGE_INTERVAL}
+      - GROUP_ID=${GROUP_ID}
+    network_mode: host
+    deploy:
+      replicas: 10 # Number of producers
+    restart: "no" # Producer stops after finishing its work
+    entrypoint: ["sh", "-c", "node producer.js"]
+

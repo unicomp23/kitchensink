@@ -1,0 +1,40 @@
+name: Terraform Apply on Pull Request Merged
+env:
+  AWS_REGION: ${{ vars.AWS_REGION }}
+on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - closed
+
+jobs:
+  detect-changes:
+    if: ${{ github.event.pull_request.merged == true }}
+    uses: ./.github/workflows/detect_changes.yml
+    permissions:
+      id-token: write
+      contents: read
+      pull-requests: read
+
+
+  apply:
+    needs: [detect-changes]
+    if: ${{ needs.detect-changes.outputs.folders != '[]'}}
+    strategy:
+      fail-fast: false
+      matrix:
+        folder: ${{fromJson(needs.detect-changes.outputs.folders)}}
+    uses: ./.github/workflows/terraform_apply.yml
+    with:
+      tf_version: ${{ vars.TF_VERSION }}
+      aws_region: ${{ vars.AWS_REGION }}
+      working_directory: ${{ matrix.folder }}
+      event_name: pull_request
+      role_to_assume: ${{ vars.AWS_ASSUME_ROLE }}
+      tfplan_s3_bucket: ${{ vars.TFPLAN_S3_BUCKET}}
+    secrets: inherit
+    permissions:
+      id-token: write
+      contents: read
+      pull-requests: write

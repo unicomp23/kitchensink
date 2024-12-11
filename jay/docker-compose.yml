@@ -1,0 +1,34 @@
+services:
+  kafka-producer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - SCRIPT_TYPE=producer # Indicates to run producer.js
+      - BROKERS=${BROKERS}
+      - TOPIC_NAME=${TOPIC_NAME}
+      - NUM_THREADS=${NUM_THREADS}
+      - NUM_MESSAGES=${NUM_MESSAGES}
+      - KPI_THRESHOLD=${KPI_THRESHOLD}
+    deploy:
+      replicas: 1 # Number of producers
+    restart: "no" # Producer stops after finishing its work
+    entrypoint: ["sh", "-c", "node producer.js"]
+
+  kafka-consumer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - SCRIPT_TYPE=consumer # Indicates to run consumer.js
+      - BROKERS=${BROKERS}
+      - TOPIC_NAME=${TOPIC_NAME}
+      - GROUP_ID=${GROUP_ID}
+      - KPI_THRESHOLD=${KPI_THRESHOLD}
+    deploy:
+      replicas: 3 # Number of consumers
+    volumes:
+      - "/home/ec2-user/logs:/logs" # Shared logs directory on host
+    restart: always # Consumers run continuously
+    entrypoint: ["sh", "-c", "node consumer.js"]
+

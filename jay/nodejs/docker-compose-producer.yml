@@ -1,0 +1,18 @@
+services:
+  kafka-producer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - SCRIPT_TYPE=producer # Indicates to run producer.js
+      - BROKERS=${BROKERS}
+      - TOPIC_NAME=${TOPIC_NAME}
+      - NUM_THREADS=${NUM_THREADS}
+      - NUM_MESSAGES=${NUM_MESSAGES}
+      - KPI_THRESHOLD=${KPI_THRESHOLD}
+    network_mode: host
+    deploy:
+      replicas: 10 # Number of producers
+    restart: "no" # Producer stops after finishing its work
+    entrypoint: ["sh", "-c", "node producer.js"]
+
